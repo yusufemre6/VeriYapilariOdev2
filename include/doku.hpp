@@ -12,7 +12,7 @@ class Doku
 		void hucreEkle(int dnaUzunlugu);		
 		Doku* sol;
 		Doku* sag;
-        Hucre* ortadakiHucre;
+        int hucreSayisi;
         Hucre* ilkHucre;
 };
 
