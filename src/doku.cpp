@@ -11,7 +11,7 @@ Doku::Doku()
 
  void Doku::hucreEkle(int dnaUzunlugu)
  {
-     Hucre* yeniHucre= new SatirDugum(dnaUzunlugu);
+     Hucre* yeniHucre= new Hucre(dnaUzunlugu);
      if(ilkHucre==0)
      {
          ilkHucre=yeniHucre;
