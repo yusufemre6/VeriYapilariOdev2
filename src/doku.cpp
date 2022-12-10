@@ -7,7 +7,6 @@ Doku::Doku()
     sag=0;
 	hucreSayisi=0;
     ilkHucre=0;
-    ortadakiHucre=0;
 }
 
 //dokuya hücre ekleme fonksiyonu

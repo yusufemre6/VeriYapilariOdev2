@@ -14,7 +14,6 @@ class Doku
 		Doku* sag;
         int hucreSayisi;
         Hucre* ilkHucre;
-		Hucre* ortadakiHucre;
 };
 
 #endif
