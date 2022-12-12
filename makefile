@@ -3,11 +3,26 @@ DerleCalistir: Program Calistir
 Calistir:
 	./bin/program.exe
 
-Program: DinamikDizi Dugum Kuyruk Radix Hucre Doku  Main 
-	g++ ./lib/dinamikdizi.o ./lib/dugum.o ./lib/kuyruk.o ./lib/radix.o  ./lib/hucre.o  ./lib/doku.o ./lib/main.o -o ./bin/program.exe
+Program: DinamikDizi Dugum Kuyruk Radix Hucre Doku Agacdugum Ikiliaramaagaci Organ Sistem Organizma Main 
+	g++ ./lib/dinamikdizi.o ./lib/dugum.o ./lib/kuyruk.o ./lib/radix.o  ./lib/hucre.o  ./lib/doku.o ./lib/agacdugum.o ./lib/ikiliaramaagaci.o ./lib/organ.o ./lib/sistem.o ./lib/organizma.o ./lib/main.o -o ./bin/program.exe
 
 Main:
 	g++ -I "./include" -c ./src/main.cpp -o ./lib/main.o
+
+Organizma:
+	g++ -I "./include" -c ./src/organizma.cpp -o ./lib/organizma.o
+
+Sistem:
+	g++ -I "./include" -c ./src/sistem.cpp -o ./lib/sistem.o
+
+Organ:
+	g++ -I "./include" -c ./src/organ.cpp -o ./lib/organ.o
+
+Ikiliaramaagaci:
+	g++ -I "./include" -c ./src/ikiliaramaagaci.cpp -o ./lib/ikiliaramaagaci.o	
+
+Agacdugum:
+	g++ -I "./include" -c ./src/agacdugum.cpp -o ./lib/agacdugum.o
 
 Doku:
 	g++ -I "./include" -c ./src/doku.cpp -o ./lib/doku.o

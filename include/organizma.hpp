@@ -8,7 +8,6 @@ class Organizma
     public:
     Organizma();
     Sistem* ilkSistem;
-    void SistemEkle(Sistem* eklenecekSistem);
-        
-}
+    void SistemEkle(Sistem* eklenecekSistem);     
+};
 #endif

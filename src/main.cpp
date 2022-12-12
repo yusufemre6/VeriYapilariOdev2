@@ -4,8 +4,12 @@
 #include<sstream>
 #include "hucre.hpp"
 #include "doku.hpp"
+#include "organ.hpp"
 #include "dinamikdizi.hpp"
 #include "radix.hpp"
+#include "ikiliaramaagaci.hpp"
+#include "sistem.hpp"
+#include "organizma.hpp"
 
 using namespace std;
 
@@ -13,15 +17,21 @@ int main()
 {
     ifstream dosyaOku;
 	dosyaOku.open("Veri.txt");
-
     string satir;
+
     int dokuSayaci=20;
+    int organSayaci=100;
+    
+    Doku* organOlacakDokular;//20 tane kosulu oldugu icin 
+    Organ* sistemOlacakOrganlar;//100 tane kosulu oldugu icin
+    IkiliAramaAgaci* aramaAgaci;
+    Dinamikdizi* dinamikDizi;
 
-    Doku* organOlacakDokular;
-
+    Organizma* organizma=new Organizma();//ana organizma
+    
     while(!dosyaOku.eof())
     {
-        if(dokuSayaci==20)
+        if(dokuSayaci==20)//baslangicta 20 tane doku aciyorum ve her 20 satır dokulara eklenince yeni 20 tane doku acilacak.
         {
             dokuSayaci=0;
             organOlacakDokular=new Doku[20];
@@ -31,41 +41,53 @@ int main()
 		int tmp;
 		stringstream ss(satir);   
         
-        Dinamikdizi* dinamikDizi=new Dinamikdizi();
 
-        while(ss>>tmp)
+        dinamikDizi=new Dinamikdizi();
+
+        while(ss>>tmp)//satirdaki sayilari dinamik diziye aliyorum.
         {
             dinamikDizi->SayiEkle(tmp);
         }
 
-        Radix* radix=new Radix(dinamikDizi->m_adres,dinamikDizi->m_kullanilan);
+        Radix* radix=new Radix(dinamikDizi->m_adres,dinamikDizi->m_kullanilan);//dinamik diziyi artan sekilde siraliyorum
 
-        int* siraliSayilar=radix->sirala();
+        int* siraliSayilar=radix->sirala();//sirali sayilar dizisi tutan pointer
 
         delete radix;
 
-        for(int i=0;i<dinamikDizi->m_kullanilan;i++)
+        for(int i=0;i<dinamikDizi->m_kullanilan;i++)// sirali diziyi dokuya eklemek icin
         {
-            organOlacakDokular[0].HucreEkle(siraliSayilar[i]);
+            organOlacakDokular[dokuSayaci].HucreEkle(siraliSayilar[i],dinamikDizi->m_kullanilan);
         }
 
         delete dinamikDizi;
 
-        // Hucre* gec=organOlacakDokular[dokuSayaci].ilkHucre;
-
-        // while(gec!=0)
-        // {
-        //     cout<<setw(5)<<gec->dnaUzunlugu;
-        //     gec=gec->sonrakiHucre;
-        // }
-        // cout<<endl;
-        // cin>>tmp;
-
         dokuSayaci++;
 
-        if(dokuSayaci==20)
+        if(dokuSayaci==20)//20 tane doku olunca organ yapmak icin 
         {
+            if(organSayaci==100)
+            {   
+                organSayaci=0;
+                sistemOlacakOrganlar=new Organ[100];
+            }
+
+            aramaAgaci=new IkiliAramaAgaci();
+
+            for(int i=0;i<20;i++)//dokular orta hucresinden agaca ekleniyor
+            {
+                aramaAgaci->Ekle(organOlacakDokular[i].ortaHucre,aramaAgaci->kok);
+            }
+
+            sistemOlacakOrganlar[organSayaci].AgacEkle(aramaAgaci);//agac organa ekleniyor
             
+            organSayaci++;
+
+            if(organSayaci==100)//100 tane olan organi sistem yapip organizmaya baglıyorum
+            {
+                Sistem* sistem=new Sistem(sistemOlacakOrganlar);
+                organizma->SistemEkle(sistem);
+            }
         }
 
     }

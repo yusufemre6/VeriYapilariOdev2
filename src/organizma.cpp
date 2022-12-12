@@ -25,7 +25,7 @@ void Organizma:: SistemEkle(Sistem* eklenecekSistem)
         {
             gec=gec->sonrakiSistem;
         }
-        gec->sonrakiHucre=eklenecekSistem;
+        gec->sonrakiSistem=eklenecekSistem;
         eklenecekSistem->oncekiSistem=gec;
     }
 }

@@ -3,10 +3,13 @@
 
 #include "hucre.hpp"
 #include "doku.hpp"
+#include "ikiliaramaagaci.hpp"
 
 class Organ
 {
-    Organ();
-    int dokuSayisi;
-}
+    public:
+        Organ();
+        IkiliAramaAgaci* ikiliaramaagaci;
+        void AgacEkle(IkiliAramaAgaci* ikiliaramaagaci);
+};
 #endif
