@@ -11,5 +11,4 @@ Organ::Organ()
 void Organ::AgacEkle(IkiliAramaAgaci* ikiliaramaagaci)
 {
     this->ikiliaramaagaci=ikiliaramaagaci;
-    cout<<"agac organa eklendi"<<endl;
 }

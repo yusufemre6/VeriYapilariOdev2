@@ -1,5 +1,4 @@
 #include "ikiliaramaagaci.hpp"
-#include "agacdugum.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -11,64 +10,63 @@ IkiliAramaAgaci::IkiliAramaAgaci()
     kok=0;
 }
 
-bool IkiliAramaAgaci::VarMi(int aranan, AgacDugum* aktif)
+// bool IkiliAramaAgaci::VarMi(int aranan, AgacDugum* aktif)
+// {
+//     if(aktif->hucre->dnaUzunlugu<aranan)
+//     { 
+//         if(aktif->sag)
+//             return VarMi(aranan,aktif->sag);
+
+//         return false;    
+//     }
+//     else if(aktif->hucre->dnaUzunlugu>aranan)
+//     {
+//         if(aktif->sol)
+//             return VarMi(aranan,aktif->sol);
+
+//         return false;    
+//     }
+//     else 
+//         return true;
+// }
+
+void IkiliAramaAgaci::Ekle(Doku* yeniDoku, Doku* aktifDoku)
 {
-    if(aktif->hucre->dnaUzunlugu<aranan)
-    { 
-        if(aktif->sag)
-            return VarMi(aranan,aktif->sag);
-
-        return false;    
-    }
-    else if(aktif->hucre->dnaUzunlugu>aranan)
+    if(aktifDoku==0)
     {
-        if(aktif->sol)
-            return VarMi(aranan,aktif->sol);
-
-        return false;    
+        kok=yeniDoku;
     }
-    else 
-        return true;
-}
-
-void IkiliAramaAgaci::Ekle(Hucre* hucre, AgacDugum* aktifDugum)
-{
-    if(aktifDugum==0)
+    else if((aktifDoku->ortaHucre->dnaUzunlugu)>=(yeniDoku->ortaHucre->dnaUzunlugu))
     {
-        aktifDugum=new AgacDugum(hucre);
-        kok=aktifDugum;
-    }
-    else if((aktifDugum->hucre->dnaUzunlugu)>=(hucre->dnaUzunlugu))
-    {
-        if(aktifDugum->sol)
-            Ekle(hucre,aktifDugum->sol);
+        if(aktifDoku->sol)
+            Ekle(yeniDoku,aktifDoku->sol);
         else
-            aktifDugum->sol=new AgacDugum(hucre);
+            aktifDoku->sol=yeniDoku;
     }
-    else if((aktifDugum->hucre->dnaUzunlugu)<(hucre->dnaUzunlugu))
+    else if((aktifDoku->ortaHucre->dnaUzunlugu)<(yeniDoku->ortaHucre->dnaUzunlugu))
     {
-        if(aktifDugum->sag)
-            Ekle(hucre,aktifDugum->sag);
+        if(aktifDoku->sag)
+            Ekle(yeniDoku,aktifDoku->sag);
         else
-            aktifDugum->sag=new AgacDugum(hucre);
+            aktifDoku->sag=yeniDoku;
     }
 }
 
-int IkiliAramaAgaci::Yukseklik(AgacDugum* aktifDugum)
-{
-    if(aktifDugum)
-    {
-        return 1+max(Yukseklik(aktifDugum->sol),Yukseklik(aktifDugum->sag));
-    }
-    return -1;
-}
+// int IkiliAramaAgaci::Yukseklik(AgacDugum* aktifDugum)
+// {
+//     if(aktifDugum)
+//     {
+//         return 1+max(Yukseklik(aktifDugum->sol),Yukseklik(aktifDugum->sag));
+//     }
+//     return -1;
+// }
 
-void IkiliAramaAgaci::PostOrder(AgacDugum* aktifDugum)
+void IkiliAramaAgaci::PostOrder(Doku* aktifDoku)
 {
-    if(aktifDugum)
+    if(aktifDoku)
     {
-        PostOrder(aktifDugum->sol);
-        PostOrder(aktifDugum->sag);
-        cout<<aktifDugum->hucre->dnaUzunlugu<<"  ";
+        PostOrder(aktifDoku->sol);
+        PostOrder(aktifDoku->sag);
+        cout<<aktifDoku->ortaHucre->dnaUzunlugu<<"  ";
     }
 }

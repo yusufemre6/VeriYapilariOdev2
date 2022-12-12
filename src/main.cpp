@@ -41,7 +41,6 @@ int main()
 		int tmp;
 		stringstream ss(satir);   
         
-
         dinamikDizi=new Dinamikdizi();
 
         while(ss>>tmp)//satirdaki sayilari dinamik diziye aliyorum.
@@ -76,8 +75,11 @@ int main()
 
             for(int i=0;i<20;i++)//dokular orta hucresinden agaca ekleniyor
             {
-                aramaAgaci->Ekle(organOlacakDokular[i].ortaHucre,aramaAgaci->kok);
+                aramaAgaci->Ekle(&organOlacakDokular[i],aramaAgaci->kok);
             }
+
+            aramaAgaci->PostOrder(aramaAgaci->kok);
+            cout<<endl;
 
             sistemOlacakOrganlar[organSayaci].AgacEkle(aramaAgaci);//agac organa ekleniyor
             
@@ -89,6 +91,5 @@ int main()
                 organizma->SistemEkle(sistem);
             }
         }
-
     }
 }
