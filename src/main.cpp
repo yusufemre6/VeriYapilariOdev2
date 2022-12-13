@@ -10,6 +10,7 @@
 #include "ikiliaramaagaci.hpp"
 #include "sistem.hpp"
 #include "organizma.hpp"
+#include "kontrol.hpp"
 
 using namespace std;
 
@@ -78,9 +79,6 @@ int main()
                 aramaAgaci->Ekle(&organOlacakDokular[i],aramaAgaci->kok);
             }
 
-            aramaAgaci->PostOrder(aramaAgaci->kok);
-            cout<<endl;
-
             sistemOlacakOrganlar[organSayaci].AgacEkle(aramaAgaci);//agac organa ekleniyor
             
             organSayaci++;
@@ -89,7 +87,36 @@ int main()
             {
                 Sistem* sistem=new Sistem(sistemOlacakOrganlar);
                 organizma->SistemEkle(sistem);
+                organizma->sistemSayisi+=1;
             }
         }
+    }
+
+    Kontrol* kontrol=new Kontrol();
+
+    Sistem* gec=organizma->ilkSistem;
+
+    while(gec!=0)
+    {
+        for(int i=0;i<100;i++)
+        {
+            if(gec->organlar[i].ikiliaramaagaci!=0)
+            {
+                kontrol->DengeKontrol(gec->organlar[i].ikiliaramaagaci,gec->organlar[i].ikiliaramaagaci->kok);
+                if(kontrol->dengesizMi==true)
+                {
+                   cout<<"#";
+                }
+                else    
+                   cout<<" ";
+
+                kontrol->dengesizMi=false;    
+            }
+            else 
+                break;
+        }
+        cout<<endl;
+
+        gec=gec->sonrakiSistem;
     }
 }

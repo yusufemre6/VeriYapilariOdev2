@@ -9,6 +9,7 @@ using namespace std;
 Organizma::Organizma()
 {
     ilkSistem=0;
+    sistemSayisi=0;
 }
 
 void Organizma:: SistemEkle(Sistem* eklenecekSistem)

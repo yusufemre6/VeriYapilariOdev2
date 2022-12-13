@@ -52,14 +52,14 @@ void IkiliAramaAgaci::Ekle(Doku* yeniDoku, Doku* aktifDoku)
     }
 }
 
-// int IkiliAramaAgaci::Yukseklik(AgacDugum* aktifDugum)
-// {
-//     if(aktifDugum)
-//     {
-//         return 1+max(Yukseklik(aktifDugum->sol),Yukseklik(aktifDugum->sag));
-//     }
-//     return -1;
-// }
+int IkiliAramaAgaci::Yukseklik(Doku* aktifDoku)
+{
+    if(aktifDoku)
+    {
+        return 1+max(Yukseklik(aktifDoku->sol),Yukseklik(aktifDoku->sag));
+    }
+    return -1;
+}
 
 void IkiliAramaAgaci::PostOrder(Doku* aktifDoku)
 {

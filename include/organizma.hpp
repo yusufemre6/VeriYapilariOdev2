@@ -7,6 +7,7 @@ class Organizma
 { 
     public:
     Organizma();
+    int sistemSayisi;
     Sistem* ilkSistem;
     void SistemEkle(Sistem* eklenecekSistem);     
 };

@@ -12,7 +12,7 @@ class IkiliAramaAgaci
     ~IkiliAramaAgaci();
     void Ekle(Doku* yeniDoku, Doku* aktifDoku);
     //void Sil();
-    //int Yukseklik(AgacDugum* aktifDugum);
+    int Yukseklik(Doku* aktifDoku);
     void PostOrder(Doku* aktifDoku); 
     Doku* kok;
     //bool VarMi(int aranan,AgacDugum* aktif); 

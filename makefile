@@ -3,11 +3,14 @@ DerleCalistir: Program Calistir
 Calistir:
 	./bin/program.exe
 
-Program: DinamikDizi Dugum Kuyruk Radix Hucre Doku Ikiliaramaagaci Organ Sistem Organizma Main 
-	g++ ./lib/dinamikdizi.o ./lib/dugum.o ./lib/kuyruk.o ./lib/radix.o  ./lib/hucre.o  ./lib/doku.o ./lib/ikiliaramaagaci.o ./lib/organ.o ./lib/sistem.o ./lib/organizma.o ./lib/main.o -o ./bin/program.exe
+Program: DinamikDizi Dugum Kuyruk Radix Hucre Doku Ikiliaramaagaci Organ Sistem Organizma Kontrol Main 
+	g++ ./lib/dinamikdizi.o ./lib/dugum.o ./lib/kuyruk.o ./lib/radix.o  ./lib/hucre.o  ./lib/doku.o ./lib/ikiliaramaagaci.o ./lib/organ.o ./lib/sistem.o ./lib/organizma.o ./lib/kontrol.o ./lib/main.o -o ./bin/program.exe
 
 Main:
 	g++ -I "./include" -c ./src/main.cpp -o ./lib/main.o
+
+Kontrol:
+	g++ -I "./include" -c ./src/kontrol.cpp -o ./lib/kontrol.o	
 
 Organizma:
 	g++ -I "./include" -c ./src/organizma.cpp -o ./lib/organizma.o
