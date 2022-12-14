@@ -10,6 +10,17 @@ Doku::Doku()
     ortaHucre=0;
 }
 
+Doku::~Doku()
+{
+    Hucre* gec=ilkHucre;
+    while(gec!=0)
+    {
+        Hucre* silinecek=gec;
+        gec=gec->sonrakiHucre;
+        delete silinecek;
+    }
+}
+
 //dokuya hücre ekleme fonksiyonu
  void Doku::HucreEkle(int dnaUzunlugu , int satirdakiHucreSayisi)
  {
@@ -33,4 +44,18 @@ Doku::Doku()
 
       if(hucreSayisi==(satirdakiHucreSayisi/2+1))
          ortaHucre=yeniHucre;
+ }
+
+ void Doku::DokuIciniTemizle()
+ {
+    Hucre* gec=ilkHucre;
+    while(gec!=0)
+    {
+        Hucre* silinecek=gec;
+        gec=gec->sonrakiHucre;
+        delete silinecek;
+    }
+    ilkHucre=0;
+    ortaHucre=0;
+    hucreSayisi=0;
  }

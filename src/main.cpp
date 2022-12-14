@@ -1,5 +1,7 @@
 #include<iostream>
 #include<iomanip>
+#include<conio.h>
+#include<stdlib.h>
 #include<fstream>
 #include<sstream>
 #include "hucre.hpp"
@@ -61,11 +63,13 @@ int main()
         }
 
         delete dinamikDizi;
+        delete[] siraliSayilar;
 
         dokuSayaci++;
 
         if(dokuSayaci==20)//20 tane doku olunca organ yapmak icin 
         {
+         
             if(organSayaci==100)
             {   
                 organSayaci=0;
@@ -92,31 +96,17 @@ int main()
         }
     }
 
+
     Kontrol* kontrol=new Kontrol();
 
-    Sistem* gec=organizma->ilkSistem;
+    kontrol->EkranaYazdirma(organizma);
 
-    while(gec!=0)
+    int input;
+    input=getch();
+    if(input==13)
     {
-        for(int i=0;i<100;i++)
-        {
-            if(gec->organlar[i].ikiliaramaagaci!=0)
-            {
-                kontrol->DengeKontrol(gec->organlar[i].ikiliaramaagaci,gec->organlar[i].ikiliaramaagaci->kok);
-                if(kontrol->dengesizMi==true)
-                {
-                   cout<<"#";
-                }
-                else    
-                   cout<<" ";
-
-                kontrol->dengesizMi=false;    
-            }
-            else 
-                break;
-        }
-        cout<<endl;
-
-        gec=gec->sonrakiSistem;
+        system("cls");
+        kontrol->Mutasyon(organizma);
+        kontrol->EkranaYazdirma(organizma);
     }
 }

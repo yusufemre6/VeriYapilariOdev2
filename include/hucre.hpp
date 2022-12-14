@@ -4,7 +4,8 @@
 class Hucre
 {
 	public:
-		Hucre(int dnaUzunlugu);		
+		Hucre(int dnaUzunlugu);
+		~Hucre();		
 		Hucre* oncekiHucre;
 		Hucre* sonrakiHucre;
 		int dnaUzunlugu;

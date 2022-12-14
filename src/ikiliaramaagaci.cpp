@@ -8,27 +8,63 @@ using namespace std;
 IkiliAramaAgaci::IkiliAramaAgaci()
 {
     kok=0;
+    sayac=0;
 }
 
-// bool IkiliAramaAgaci::VarMi(int aranan, AgacDugum* aktif)
-// {
-//     if(aktif->hucre->dnaUzunlugu<aranan)
-//     { 
-//         if(aktif->sag)
-//             return VarMi(aranan,aktif->sag);
+IkiliAramaAgaci::~IkiliAramaAgaci()
+{
+    Temizle();
+}
 
-//         return false;    
-//     }
-//     else if(aktif->hucre->dnaUzunlugu>aranan)
-//     {
-//         if(aktif->sol)
-//             return VarMi(aranan,aktif->sol);
+void IkiliAramaAgaci::Temizle()
+{
+    while(!BosMu())
+    {
+        DokuSil(kok);
+    }
+}
 
-//         return false;    
-//     }
-//     else 
-//         return true;
-// }
+bool IkiliAramaAgaci::DokuSil(Doku* &doku)
+{
+    Doku* silinecekDoku=doku;
+
+    if(doku->sag==0) doku=doku->sol;
+    else if(doku->sol==0)doku=doku->sag;
+    else
+    {
+        silinecekDoku = doku->sol;
+		Doku *ebeveyn = doku;
+		while(silinecekDoku->sag != 0){
+			ebeveyn = silinecekDoku;
+			silinecekDoku = silinecekDoku->sag;
+		}
+		doku->ortaHucre->dnaUzunlugu = silinecekDoku->ortaHucre->dnaUzunlugu;
+		if(ebeveyn == doku) doku->sol = silinecekDoku->sol;
+		else ebeveyn->sag = silinecekDoku->sol;
+    }
+    delete silinecekDoku;
+	return true;
+}
+
+bool IkiliAramaAgaci::VarMi(int aranan, Doku* aktifDoku)
+{
+    if(aktifDoku->ortaHucre->dnaUzunlugu<aranan)
+    { 
+        if(aktifDoku->sag)
+            return VarMi(aranan,aktifDoku->sag);
+
+        return false;    
+    }
+    else if(aktifDoku->ortaHucre->dnaUzunlugu>aranan)
+    {
+        if(aktifDoku->sol)
+            return VarMi(aranan,aktifDoku->sol);
+
+        return false;    
+    }
+    else 
+        return true;
+}
 
 void IkiliAramaAgaci::Ekle(Doku* yeniDoku, Doku* aktifDoku)
 {
@@ -67,6 +103,17 @@ void IkiliAramaAgaci::PostOrder(Doku* aktifDoku)
     {
         PostOrder(aktifDoku->sol);
         PostOrder(aktifDoku->sag);
-        cout<<aktifDoku->ortaHucre->dnaUzunlugu<<"  ";
+        Hucre* gec=aktifDoku->ilkHucre;
+        while(gec!=0)
+        {
+            cout<<gec->dnaUzunlugu<<" ";
+            gec=gec->sonrakiHucre;
+        }
+        cout<<endl;
     }
+}
+
+bool IkiliAramaAgaci::BosMu()
+{
+    return kok==0;
 }

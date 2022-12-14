@@ -11,11 +11,17 @@ class IkiliAramaAgaci
     IkiliAramaAgaci();
     ~IkiliAramaAgaci();
     void Ekle(Doku* yeniDoku, Doku* aktifDoku);
-    //void Sil();
     int Yukseklik(Doku* aktifDoku);
-    void PostOrder(Doku* aktifDoku); 
+    void PostOrder(Doku* aktifDoku);
     Doku* kok;
-    //bool VarMi(int aranan,AgacDugum* aktif); 
+    bool VarMi(int aranan,Doku* aktifDoku);
+    bool DokuSil(Doku* &doku);
+    int sayac;
+
+   private:
+    bool BosMu();
+    void Temizle();
+      
         
 };
 #endif

@@ -6,3 +6,8 @@ Hucre::Hucre(int dnaUzunlugu)
     sonrakiHucre=0;
     this->dnaUzunlugu=dnaUzunlugu;
 }
+
+Hucre::~Hucre()
+{
+    
+}

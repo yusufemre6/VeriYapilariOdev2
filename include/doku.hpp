@@ -9,7 +9,9 @@ class Doku
 {
 	public:
 		Doku();
-		void HucreEkle(int dnaUzunlugu,int satirdakiHucreSayisi);		
+		~Doku();
+		void HucreEkle(int dnaUzunlugu,int satirdakiHucreSayisi);
+		void DokuIciniTemizle();		
 		Doku* sol;
 		Doku* sag;
         int hucreSayisi;
