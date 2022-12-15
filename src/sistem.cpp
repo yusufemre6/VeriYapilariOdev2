@@ -8,3 +8,8 @@ Sistem::Sistem(Organ* organlar)
     oncekiSistem=0;
     sonrakiSistem=0;
 }
+
+Sistem::~Sistem()
+{
+    delete[] organlar;
+}

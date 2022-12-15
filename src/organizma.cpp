@@ -30,3 +30,15 @@ void Organizma:: SistemEkle(Sistem* eklenecekSistem)
         eklenecekSistem->oncekiSistem=gec;
     }
 }
+
+Organizma::~Organizma()
+{   
+    Sistem* gec=ilkSistem;
+    Sistem* silinecek;
+    while(gec!=0)
+    {
+        silinecek=gec;
+        gec=gec->sonrakiSistem;
+        delete silinecek;
+    }
+}

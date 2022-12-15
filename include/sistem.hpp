@@ -7,6 +7,7 @@ class Sistem
 {
     public:
         Sistem(Organ* organlar);
+        ~Sistem();
         Organ* organlar;
         Sistem* oncekiSistem;
         Sistem* sonrakiSistem;

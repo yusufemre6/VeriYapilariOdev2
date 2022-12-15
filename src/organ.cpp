@@ -12,3 +12,8 @@ void Organ::AgacEkle(IkiliAramaAgaci* ikiliaramaagaci)
 {
     this->ikiliaramaagaci=ikiliaramaagaci;
 }
+
+Organ::~Organ()
+{
+    delete ikiliaramaagaci;
+}

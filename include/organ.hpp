@@ -9,6 +9,7 @@ class Organ
 {
     public:
         Organ();
+        ~Organ();
         IkiliAramaAgaci* ikiliaramaagaci;
         void AgacEkle(IkiliAramaAgaci* ikiliaramaagaci);
 };
