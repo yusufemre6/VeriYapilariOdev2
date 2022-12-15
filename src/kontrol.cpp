@@ -70,21 +70,26 @@ void Kontrol::Mutasyon(Organizma* organizma)
 
                      sayac=0;
 
+                    for(int i=0;i<20;i++)
+                    {
+                        dinamikDiziler[i].RadixYap();
+                    }
+
                      yeniDokuDizisi=new Doku[20];
                      yeniAgac=new IkiliAramaAgaci();
 
-                     for(int i=0;i<20;i++)
-                     {   
+                    for(int i=0;i<20;i++)
+                    {   
                         int* dizi=dinamikDiziler[i].m_adres;
                         for(int j=0;j<dinamikDiziler[i].m_kullanilan;j++)
                         {
                             yeniDokuDizisi[i].HucreEkle(dizi[j],dinamikDiziler[i].m_kullanilan);
                         }
                         yeniAgac->Ekle(&yeniDokuDizisi[i],yeniAgac->kok);
-                     }
-                     //delete gec->organlar[i].ikiliaramaagaci;
-                     gec->organlar[i].ikiliaramaagaci=yeniAgac;
-                     delete[] dinamikDiziler;
+                    }
+                    //delete gec->organlar[i].ikiliaramaagaci;
+                    gec->organlar[i].ikiliaramaagaci=yeniAgac;
+                    delete[] dinamikDiziler;
                 }
             }
             else
