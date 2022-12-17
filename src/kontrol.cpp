@@ -1,11 +1,14 @@
 #include "kontrol.hpp"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 Kontrol::Kontrol()
 {
     dengesizMi=false;
+    mutasyon=false;
     sayac=0;
+    sayac1=0;
     
 }
 
@@ -24,6 +27,10 @@ void Kontrol::DengeKontrol(IkiliAramaAgaci* ikiliaramaagaci,Doku* aktifDoku)
 
 void Kontrol::EkranaYazdirma(Organizma* organizma)
 {
+    if(mutasyon==true)
+        cout<<setw(44)<<"ORGANIZMA (MUTASYONA UGRADI)"<<endl;
+    else
+        cout<<setw(25)<<"ORGANIZMA"<<endl;
     Sistem* gec=organizma->ilkSistem;
 
     while(gec!=0)
@@ -53,6 +60,7 @@ void Kontrol::EkranaYazdirma(Organizma* organizma)
 
 void Kontrol::Mutasyon(Organizma* organizma)
 {
+    mutasyon=true;
     Sistem* gec=organizma->ilkSistem;
 
     while(gec!=0)
@@ -63,33 +71,15 @@ void Kontrol::Mutasyon(Organizma* organizma)
             {
                 if(gec->organlar[i].ikiliaramaagaci->kok->ortaHucre->dnaUzunlugu%50==0)
                 {   
-                     HucreleriMutasyonaSokma(gec->organlar[i].ikiliaramaagaci->kok);
-
-                     Dinamikdizi* dinamikDiziler=new Dinamikdizi[20];
-                     PostOrderAl(dinamikDiziler,gec->organlar[i].ikiliaramaagaci->kok);
-
-                     sayac=0;
-
-                    for(int i=0;i<20;i++)
-                    {
-                        dinamikDiziler[i].RadixYap();
-                    }
-
-                     yeniDokuDizisi=new Doku[20];
-                     yeniAgac=new IkiliAramaAgaci();
-
-                    for(int i=0;i<20;i++)
-                    {   
-                        int* dizi=dinamikDiziler[i].m_adres;
-                        for(int j=0;j<dinamikDiziler[i].m_kullanilan;j++)
-                        {
-                            yeniDokuDizisi[i].HucreEkle(dizi[j],dinamikDiziler[i].m_kullanilan);
-                        }
-                        yeniAgac->Ekle(&yeniDokuDizisi[i],yeniAgac->kok);
-                    }
-                    //delete gec->organlar[i].ikiliaramaagaci;
-                    gec->organlar[i].ikiliaramaagaci=yeniAgac;
-                    delete[] dinamikDiziler;
+                   AgaciDiziyeAl(gec->organlar[i].ikiliaramaagaci);
+                   HucreleriMutasyonaSokma();
+                   RadixYap();
+                   YeniDokuYap();
+                   YeniAgacYap();
+                   delete[] dinamikDiziler;
+                   sayac=0;
+                   //delete gec->organlar[i].ikiliaramaagaci;
+                   gec->organlar[i].ikiliaramaagaci=yeniAgac;
                 }
             }
             else
@@ -99,37 +89,74 @@ void Kontrol::Mutasyon(Organizma* organizma)
     }
 }
 
-void Kontrol::HucreleriMutasyonaSokma(Doku* aktifDoku)
+void Kontrol::YeniAgacYap()
 {
-    if(aktifDoku)
+    yeniAgac=new IkiliAramaAgaci();
+    for(int i=0;i<20;i++)
     {
-        HucreleriMutasyonaSokma(aktifDoku->sol);
-        HucreleriMutasyonaSokma(aktifDoku->sag);
-        Hucre* gec=aktifDoku->ilkHucre;
-        while(gec!=0)
-        {
-            if(gec->dnaUzunlugu%2==0)
-            {
-                gec->dnaUzunlugu=gec->dnaUzunlugu/2;
-            }
-            gec=gec->sonrakiHucre;
-        }
-
+        yeniAgac->Ekle(&yeniDokuDizisi[i],yeniAgac->kok);
     }
 }
 
-void Kontrol::PostOrderAl(Dinamikdizi* dD,Doku* aktifDoku)
+void Kontrol::YeniDokuYap()
+{
+    yeniDokuDizisi=new Doku[20];
+
+    for(int i=0;i<20;i++)
+    {
+        for(int j=0;j<dinamikDiziler[i].m_kullanilan;j++)
+        {
+            yeniDokuDizisi[i].HucreEkle(siraliDiziler[i][j],dinamikDiziler[i].m_kullanilan);
+        }
+    }
+}
+
+void Kontrol::RadixYap()
+{
+      for(int i=0;i<20;i++)
+       {
+           radix=new Radix(dinamikDiziler[i].m_adres,dinamikDiziler[i].m_kullanilan);
+           siraliDiziler[i]=radix->sirala();
+           delete radix; 
+       }
+}
+
+void Kontrol::HucreleriMutasyonaSokma()
+{
+       for(int i=0;i<20;i++)
+       {
+            if(dinamikDiziler[i].m_adres[dinamikDiziler[i].m_kullanilan/2+1]%2==0)
+            {
+                for(int j=0;j<dinamikDiziler[i].m_kullanilan;j++)
+                {
+                    if(dinamikDiziler[i].m_adres[j]%2==0)
+                    {
+                        dinamikDiziler[i].m_adres[j]/=2;
+                    }
+                }
+            }           
+       }
+       
+}
+
+void Kontrol::PostOrderAl(Doku* aktifDoku)
 {
     if(aktifDoku)
     {
-        PostOrderAl(dD,aktifDoku->sol);
-        PostOrderAl(dD,aktifDoku->sag);
+        PostOrderAl(aktifDoku->sol);
+        PostOrderAl(aktifDoku->sag);
         Hucre* gec=aktifDoku->ilkHucre;
         while(gec!=0)
         {
-            dD[sayac].SayiEkle(gec->dnaUzunlugu);
+            dinamikDiziler[sayac].SayiEkle(gec->dnaUzunlugu);
             gec=gec->sonrakiHucre;
         }
         sayac++;
     }
+}
+
+void Kontrol::AgaciDiziyeAl(IkiliAramaAgaci* agac)
+{
+    dinamikDiziler=new Dinamikdizi[20];
+    PostOrderAl(agac->kok);
 }

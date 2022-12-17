@@ -16,16 +16,23 @@ class Kontrol
     public:
         Kontrol();
         bool dengesizMi;
+        bool mutasyon;
         IkiliAramaAgaci* yeniAgac;
-        Dinamikdizi* dinamikDizi;
+        Dinamikdizi* dinamikDiziler;
+        int* siraliDiziler[20];
         Radix* radix;
         Doku* yeniDokuDizisi;
         void DengeKontrol(IkiliAramaAgaci* ikiliaramaagaci,Doku* aktifDoku);
         void EkranaYazdirma(Organizma* organizma);
         void Mutasyon(Organizma* organizma);
-        void HucreleriMutasyonaSokma(Doku* aktifDoku);
-        void PostOrderAl(Dinamikdizi* dD,Doku* aktifDoku);
+        void YeniAgacYap();
+        void YeniDokuYap();
+        void RadixYap();
+        void AgaciDiziyeAl(IkiliAramaAgaci* agac);
+        void HucreleriMutasyonaSokma();
+        void PostOrderAl(Doku* aktifDoku);
         int sayac;
+        int sayac1;
         
 };
 #endif
