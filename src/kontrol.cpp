@@ -125,16 +125,13 @@ void Kontrol::HucreleriMutasyonaSokma()
 {
        for(int i=0;i<20;i++)
        {
-            if(dinamikDiziler[i].m_adres[dinamikDiziler[i].m_kullanilan/2+1]%2==0)
-            {
                 for(int j=0;j<dinamikDiziler[i].m_kullanilan;j++)
                 {
                     if(dinamikDiziler[i].m_adres[j]%2==0)
                     {
                         dinamikDiziler[i].m_adres[j]/=2;
                     }
-                }
-            }           
+                }        
        }
        
 }
