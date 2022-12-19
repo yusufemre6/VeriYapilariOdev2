@@ -1,3 +1,12 @@
+/** 
+* @file doku.cpp
+* @description Doku sınıfına ait fonksiyonlar ve değişkenler vardır.
+* @course 1.Öğretim A Grubu
+* @assignment 2.Ödev
+* @date 19.12.2022
+* @author Yusuf Emre Yıldız , yusuf.yildiz8@ogr.sakarya.edu.tr
+*/
+
 #include "doku.hpp"
 #include "hucre.hpp"
 
