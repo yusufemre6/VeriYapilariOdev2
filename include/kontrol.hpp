@@ -31,6 +31,7 @@ class Kontrol
         void AgaciDiziyeAl(IkiliAramaAgaci* agac);
         void HucreleriMutasyonaSokma();
         void PostOrderAl(Doku* aktifDoku);
+        void OrganizmaOlustur(Organizma* organizma);
         int sayac;
         int sayac1;
         
