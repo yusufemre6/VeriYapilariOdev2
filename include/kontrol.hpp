@@ -1,6 +1,13 @@
 #ifndef kontrol_hpp
 #define kontrol_hpp
 
+#include <iostream>
+#include <iomanip>
+#include<conio.h>
+#include <cmath>
+#include<stdlib.h>
+#include<fstream>
+#include<sstream>
 #include "hucre.hpp"
 #include "doku.hpp"
 #include "organ.hpp"
@@ -9,7 +16,6 @@
 #include "ikiliaramaagaci.hpp"
 #include "sistem.hpp"
 #include "organizma.hpp"
-#include "kontrol.hpp"
 
 class Kontrol
 {
@@ -33,7 +39,6 @@ class Kontrol
         void PostOrderAl(Doku* aktifDoku);
         void OrganizmaOlustur(Organizma* organizma);
         int sayac;
-        int sayac1;
         
 };
 #endif

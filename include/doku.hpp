@@ -3,6 +3,7 @@
 
 #include "hucre.hpp"
 
+
 using namespace std;
 
 class Doku
@@ -10,8 +11,7 @@ class Doku
 	public:
 		Doku();
 		~Doku();
-		void HucreEkle(int dnaUzunlugu,int satirdakiHucreSayisi);
-		void DokuIciniTemizle();		
+		void HucreEkle(int dnaUzunlugu,int satirdakiHucreSayisi);		
 		Doku* sol;
 		Doku* sag;
         int hucreSayisi;

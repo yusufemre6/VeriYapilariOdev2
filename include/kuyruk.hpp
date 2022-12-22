@@ -2,6 +2,9 @@
 #define Kuyruk_hpp
 #include<iostream>
 #include "Dugum.hpp"
+#include <iomanip>
+#include<stdexcept>
+
 using namespace std;
 
 class Kuyruk

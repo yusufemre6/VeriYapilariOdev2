@@ -8,7 +8,6 @@
 */
 
 #include "doku.hpp"
-#include "hucre.hpp"
 
 Doku::Doku()
 {
@@ -53,18 +52,4 @@ Doku::~Doku()
 
       if(hucreSayisi==(satirdakiHucreSayisi/2+1))
          ortaHucre=yeniHucre;
- }
-
- void Doku::DokuIciniTemizle()
- {
-    Hucre* gec=ilkHucre;
-    while(gec!=0)
-    {
-        Hucre* silinecek=gec;
-        gec=gec->sonrakiHucre;
-        delete silinecek;
-    }
-    ilkHucre=0;
-    ortaHucre=0;
-    hucreSayisi=0;
  }

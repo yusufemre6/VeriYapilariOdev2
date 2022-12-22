@@ -2,6 +2,9 @@
 #define organizma_hpp
 
 #include "sistem.hpp"
+#include "organ.hpp"
+#include "doku.hpp"
+#include "hucre.hpp"
 
 class Organizma
 { 

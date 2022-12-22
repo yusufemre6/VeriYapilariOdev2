@@ -8,8 +8,7 @@
 */
 
 #include "ikiliaramaagaci.hpp"
-#include <cmath>
-#include <iostream>
+
 
 using namespace std;
 

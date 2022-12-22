@@ -4,6 +4,7 @@
 #include "hucre.hpp"
 #include "doku.hpp"
 #include "ikiliaramaagaci.hpp"
+#include <iostream>
 
 class Organ
 {

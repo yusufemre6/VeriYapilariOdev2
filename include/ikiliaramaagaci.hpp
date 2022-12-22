@@ -3,6 +3,8 @@
 
 #include "hucre.hpp"
 #include "doku.hpp"
+#include <cmath>
+#include <iostream>
 
 
 class IkiliAramaAgaci
@@ -22,6 +24,5 @@ class IkiliAramaAgaci
     bool BosMu();
     void Temizle();
       
-        
 };
 #endif

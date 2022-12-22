@@ -38,15 +38,6 @@ void Dinamikdizi::Genislet(int boyut)
     m_boyut+=boyut;    
 } 
 
-void Dinamikdizi::RadixYap()
-{
-    radix=new Radix(m_adres,m_kullanilan);
-    int* sirali=radix->sirala();
-    delete radix;
-    delete m_adres;
-    m_adres=sirali;
-}
-
 Dinamikdizi::~Dinamikdizi()
 {
     delete[] m_adres;

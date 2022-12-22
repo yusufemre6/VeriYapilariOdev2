@@ -8,8 +8,7 @@
 */
 
 #include "Kuyruk.hpp"
-#include <iomanip>
-#include<stdexcept>
+
 Kuyruk::Kuyruk()
 {
     ilk=son=0;

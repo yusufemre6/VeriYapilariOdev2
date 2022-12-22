@@ -7,21 +7,7 @@
 * @author Yusuf Emre Yıldız , yusuf.yildiz8@ogr.sakarya.edu.tr
 */
 
-#include <iostream>
-#include <iomanip>
-#include<conio.h>
-#include <cmath>
-#include<stdlib.h>
-#include<fstream>
-#include<sstream>
-#include "hucre.hpp"
-#include "doku.hpp"
-#include "organ.hpp"
-#include "dinamikdizi.hpp"
-#include "radix.hpp"
-#include "ikiliaramaagaci.hpp"
-#include "sistem.hpp"
-#include "organizma.hpp"
+
 #include "kontrol.hpp"
 
 Kontrol::Kontrol()

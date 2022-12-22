@@ -8,10 +8,7 @@
 */
 
 #include "organizma.hpp"
-#include "sistem.hpp"
-#include "organ.hpp"
-#include "doku.hpp"
-#include "hucre.hpp"
+
 
 using namespace std;
 
