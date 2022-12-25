@@ -15,8 +15,6 @@ Kontrol::Kontrol()
     dengesizMi=false;
     mutasyon=false;
     sayac=0;
-    sayac1=0;
-    
 }
 
 
@@ -166,7 +164,6 @@ void Kontrol::Mutasyon(Organizma* organizma)
                    YeniAgacYap();
                    delete[] dinamikDiziler;
                    sayac=0;
-                   //delete gec->organlar[i].ikiliaramaagaci;
                    gec->organlar[i].ikiliaramaagaci=yeniAgac;
                 }
             }
